@@ -18,11 +18,13 @@ class Repeater extends Field
         $config = $this->normaliseFieldConfig($fieldConfig);
 
         $fields = (array_key_exists('sub_fields', $this->meta))
-            ? $this->meta['fields']
+            ? $this->meta['sub_fields']
             : [];
 
-        $this->withMeta([
-            'sub_fields' => array_push($fields, $config),
+        array_push($fields, $config);
+
+        return $this->withMeta([
+            'sub_fields' => $fields,
         ]);
     }
 
@@ -32,10 +34,10 @@ class Repeater extends Field
         $config = array_intersect_key($fieldConfig, array_flip($allowedKeys));
 
         if(! isset($config['name'])){
-            $config['name'] = str_slug($config['name'], '_');
+            $config['name'] = str_slug($config['label'], '_');
         }
         if(! isset($config['placeholder'])){
-            $config['placeholder'] = $config['name'];
+            $config['placeholder'] = $config['label'];
         }
         if(! isset($config['type'])){
             $config['type'] = 'text';
