@@ -1,12 +1,16 @@
 <template>
     <default-field :field="field">
         <template slot="field">
-            <input :id="field.name" type="text"
-                class="w-full form-control form-input form-input-bordered"
-                :class="errorClasses"
-                :placeholder="field.name"
-                v-model="value"
-            />
+            <sub-field-row
+                v-for="(row, index) in rows"
+                v-model="rows[index]"
+                :key="index"
+                :field="field"
+            ></sub-field-row>
+
+            <button @click.prevent="addNewRow">
+                Add row
+            </button>
 
             <p v-if="hasError" class="my-2 text-danger">
                 {{ firstError }}
@@ -16,34 +20,64 @@
 </template>
 
 <script>
-import { FormField, HandlesValidationErrors } from 'laravel-nova'
+    import {FormField, HandlesValidationErrors} from 'laravel-nova'
+    import SubFieldRow from './rows/SubFieldRow.vue';
 
-export default {
-    mixins: [FormField, HandlesValidationErrors],
+    export default {
 
-    props: ['resourceName', 'resourceId', 'field'],
+        mixins: [FormField, HandlesValidationErrors],
 
-    methods: {
-        /*
-         * Set the initial, internal value for the field.
-         */
-        setInitialValue() {
-          this.value = this.field.value || ''
+        components: {
+            SubFieldRow
         },
 
-        /**
-         * Fill the given FormData object with the field's internal value.
-         */
-        fill(formData) {
-          formData.append(this.field.attribute, this.value || '')
+        data: () => ({
+            value: [],
+            rows: []
+        }),
+
+        props: ['resourceName', 'resourceId', 'field'],
+
+        methods: {
+
+            setInitialValue() {
+                this.value = this.field.value || [];
+                this.$nextTick(() => {
+                    this.rows = this.value.map(row => JSON.parse(row));
+                });
+
+            },
+
+
+            fill(formData) {
+                formData.append(this.field.attribute, this.value || [])
+            },
+
+            handleChange(value) {
+
+            },
+
+            addNewRow() {
+                let newRow = this.field.sub_fields
+                    .map(subField => subField.name)
+                    .reduce((o, key) => ({...o, [key]: null}), {});
+
+                this.rows.push(newRow);
+            },
+
+            parse(value){
+                return JSON.parse(value)
+            }
         },
 
-        /**
-         * Update the field's internal value.
-         */
-        handleChange(value) {
-          this.value = value
+        watch: {
+            'rows' : {
+                handler: function (newRows) {
+                    console.log(newRows);
+                    this.value = newRows.map(row => JSON.stringify(row));
+                },
+                deep: true
+            }
         }
     }
-}
 </script>
