@@ -1,12 +1,18 @@
 <template>
     <default-field :field="field">
         <template slot="field">
-            <sub-field-row
-                v-for="(row, index) in rows"
-                v-model="rows[index]"
-                :key="index"
-                :field="field"
-            ></sub-field-row>
+            <draggable
+                v-model="rows"
+                :options="{ handle: '.js-row-move' }">
+                <sub-field-row
+                    v-for="(row, index) in rows"
+                    v-model="rows[index]"
+                    :key="index"
+                    :index="index"
+                    :field="field"
+                    @delete-row="deleteRow"
+                ></sub-field-row>
+            </draggable>
 
             <button class="btn btn-default btn-primary" @click.prevent="addNewRow">
                 Add row
@@ -20,6 +26,7 @@
 </template>
 
 <script>
+    import draggable from 'vuedraggable'
     import {FormField, HandlesValidationErrors} from 'laravel-nova'
     import SubFieldRow from './rows/SubFieldRow.vue';
 
@@ -28,6 +35,7 @@
         mixins: [FormField, HandlesValidationErrors],
 
         components: {
+            draggable,
             SubFieldRow
         },
 
@@ -61,8 +69,8 @@
                 this.rows.push(newRow);
             },
 
-            parse(value){
-                return JSON.parse(value)
+            deleteRow(index){
+                this.rows.splice(index, 1);
             }
         },
 
