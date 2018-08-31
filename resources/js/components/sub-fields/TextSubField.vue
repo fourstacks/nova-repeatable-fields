@@ -1,5 +1,5 @@
 <template>
-    <div class="px-2">
+    <div>
         <input
             :id="subField.name"
             :name="subField.name"

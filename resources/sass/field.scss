@@ -1,1 +1,73 @@
 // Nova Tool CSS
+
+.row{
+    position: relative;
+
+    &.-horizontal{
+        margin-bottom: 1rem;
+    }
+
+    &:after{
+        content: "";
+        position: absolute;
+        top:0; right:-2rem; bottom:0; left:-2rem;
+        background: #fff;
+        z-index: 10;
+    }
+    &-move, &-delete{
+        color: #fff;
+        position: absolute;
+        height: 2rem;
+        width: 2rem;
+        top: 50%;
+        margin-top: - 1rem;
+        padding: 0.5rem;
+        opacity: 0;
+        transition: all 0.2s;
+        transform: translateX(0);
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 20;
+
+        svg{
+            max-height: 100%;
+            max-width: 100%;
+            fill: currentColor;
+        }
+    }
+
+    &-move{
+        left: 0;
+        background: var(--primary);
+    }
+
+    &-delete{
+        right: 0;
+        background: var(--danger);
+    }
+
+    &-inputs{
+        display: flex;
+        z-index: 30;
+        position: relative;
+
+        &.-horizontal{
+            justify-content: space-between;
+        }
+
+    }
+
+    &:hover{
+        .row-move, .row-delete{
+            opacity: 1;
+        }
+        .row-move{
+            transform: translateX(- 2.5rem);
+        }
+        .row-delete{
+            transform: translateX(2.5rem);
+        }
+    }
+}

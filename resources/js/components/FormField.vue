@@ -8,7 +8,7 @@
                 :field="field"
             ></sub-field-row>
 
-            <button @click.prevent="addNewRow">
+            <button class="btn btn-default btn-primary" @click.prevent="addNewRow">
                 Add row
             </button>
 
@@ -32,7 +32,7 @@
         },
 
         data: () => ({
-            value: [],
+            value: '',
             rows: []
         }),
 
@@ -41,20 +41,16 @@
         methods: {
 
             setInitialValue() {
-                this.value = this.field.value || [];
+                this.value = this.field.value || '';
                 this.$nextTick(() => {
-                    this.rows = this.value.map(row => JSON.parse(row));
+                    this.rows = (this.value)
+                        ? JSON.parse(this.value)
+                        : [];
                 });
-
             },
-
 
             fill(formData) {
-                formData.append(this.field.attribute, this.value || [])
-            },
-
-            handleChange(value) {
-
+                formData.append(this.field.attribute, this.value || '')
             },
 
             addNewRow() {
@@ -73,8 +69,7 @@
         watch: {
             'rows' : {
                 handler: function (newRows) {
-                    console.log(newRows);
-                    this.value = newRows.map(row => JSON.stringify(row));
+                    this.value = JSON.stringify(newRows);
                 },
                 deep: true
             }
