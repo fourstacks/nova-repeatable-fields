@@ -36,6 +36,13 @@ class Repeater extends Field
         ]);
     }
 
+    public function summaryLabel($label)
+    {
+        return $this->withMeta([
+            'summary_label' => $label
+        ]);
+    }
+
     protected function fillAttributeFromRequest(NovaRequest $request,
                                                 $requestAttribute,
                                                 $model,
