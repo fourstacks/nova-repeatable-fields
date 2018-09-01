@@ -29,6 +29,13 @@ class Repeater extends Field
         ]);
     }
 
+    public function addButtonText($text)
+    {
+        return $this->withMeta([
+            'add_button_text' => $text
+        ]);
+    }
+
     public function displayStackedForm()
     {
         return $this->withMeta([

@@ -14,9 +14,11 @@
                 ></sub-field-row>
             </draggable>
 
-            <button class="btn btn-default btn-primary" @click.prevent="addNewRow">
-                Add row
-            </button>
+            <button
+                class="btn btn-default btn-primary"
+                @click.prevent="addNewRow"
+                v-text="addButtonText"
+            ></button>
 
             <p v-if="hasError" class="my-2 text-danger">
                 {{ firstError }}
@@ -45,6 +47,14 @@
         }),
 
         props: ['resourceName', 'resourceId', 'field'],
+
+        computed:{
+            addButtonText(){
+                return (this.field.add_button_text)
+                    ? this.field.add_button_text
+                    : 'Add row'
+            }
+        },
 
         methods: {
 
