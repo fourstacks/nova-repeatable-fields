@@ -3,6 +3,7 @@
 namespace Fourstacks\NovaRepeatableFields;
 
 use Laravel\Nova\Fields\Field;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Repeater extends Field
 {
@@ -26,6 +27,30 @@ class Repeater extends Field
         return $this->withMeta([
             'sub_fields' => $fields,
         ]);
+    }
+
+    public function displayStackedForm()
+    {
+        return $this->withMeta([
+            'display_stacked' => true
+        ]);
+    }
+
+    protected function fillAttributeFromRequest(NovaRequest $request,
+                                                $requestAttribute,
+                                                $model,
+                                                $attribute)
+    {
+        if ($request->exists($requestAttribute)) {
+            $model->{$attribute} = json_decode($request[$requestAttribute]);
+        }
+    }
+
+    public function resolveAttribute($resource, $attribute = null)
+    {
+        $value = data_get($resource, $attribute);
+
+        return json_encode($value);
     }
 
     private function normaliseFieldConfig($fieldConfig)
