@@ -6,9 +6,12 @@
             class="w-full form-control form-select w/"
             :value="value"
             @change="$emit('input', $event.target.value)">
-            <option value="" selected disabled>
-                {{__('Choose an option')}}
-            </option>
+            <option
+                value=""
+                v-text="placeholder"
+                selected
+                disabled
+            ></option>
             <option
                 v-for="(label, name) in subField.options"
                 :value="name"
@@ -27,7 +30,15 @@
         props: [
             'subField',
             'value'
-        ]
+        ],
+
+        computed:{
+            placeholder(){
+                return (this.subField.placeholder === this.subField.label)
+                    ? 'Choose an option'
+                    : this.subField.placeholder
+            }
+        }
 
     }
 </script>
