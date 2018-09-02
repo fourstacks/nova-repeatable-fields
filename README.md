@@ -1,10 +1,10 @@
 # A repeatable field for Nova apps
 
-This package contains a Laravel Nova field that enables the creation of repeatable sets of fields.  Nova users are free to create, reorder and delete multiple rows of data with the fields you define.  Data is saved to the database in as JSON.
+This package contains a Laravel Nova field that enables the creation of repeatable sets of fields.  Nova users are free to create, reorder and delete multiple rows of data with the fields you define.  Data is saved to the database as JSON.
 
 ## Examples
 
-![Nova repeatble field set on Nova form view](https://raw.githubusercontent.com/fourstacks/nova-checkboxes/master/screenshot-index.png)
+![Nova repeatble field set on Nova form view](https://raw.githubusercontent.com/fourstacks/nova-repeatable-fields/master/repeatable-fields.gif)
 
 
 ## Installation
@@ -58,9 +58,13 @@ class Petstore extends Model
 }
 ```
 
+The underlying database field should be either a `string` or `text` type field.
+
+
 ## Configuration
 
 This package comes with various options that you can use to define the sub-fields within your repeater and 
+
 
 #### addField
 
@@ -125,7 +129,7 @@ By default, the input placeholder will be the same as the field `label`.  Howeve
 
 ```php
 [ 
-    'width' => w-1/2',
+    'width' => 'w-1/2',
     //...
 ]
 ```
