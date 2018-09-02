@@ -64,7 +64,7 @@ class Repeater extends Field
     {
         $value = data_get($resource, $attribute);
 
-        return json_encode($value);
+        return json_encode($value ?? []);
     }
 
     private function normaliseFieldConfig($fieldConfig)
