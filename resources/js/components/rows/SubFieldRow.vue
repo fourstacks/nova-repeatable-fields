@@ -23,7 +23,7 @@
                 :sub-field="subField"
                 v-model="value[subField.name]"
                 class="row-input"
-                :class="formLayout"
+                :class="getInputLayout(subField)"
             ></component>
         </div>
     </div>
@@ -31,13 +31,17 @@
 
 <script>
     import TextSubField from '../sub-fields/TextSubField.vue';
+    import EmailSubField from '../sub-fields/EmailSubField.vue';
     import NumberSubField from '../sub-fields/NumberSubField.vue';
+    import SelectSubField from '../sub-fields/SelectSubField.vue';
 
     export default {
 
         components: {
             TextSubField,
-            NumberSubField
+            EmailSubField,
+            NumberSubField,
+            SelectSubField
         },
 
         props: ['value', 'field', 'index'],
@@ -53,6 +57,11 @@
         methods:{
             deleteRow(){
                 this.$emit('delete-row', this.index);
+            },
+            getInputLayout(subField){
+                return (this.field.display_stacked)
+                    ? this.formLayout
+                    : `${this.formLayout} ${subField.width}`
             }
         }
 

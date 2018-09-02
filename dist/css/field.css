@@ -101,6 +101,18 @@
   margin-bottom: 0;
 }
 
+.row-input.-horizontal {
+  padding: 0 0.5rem;
+}
+
+.row-input.-horizontal:first-child {
+  margin-left: -0.5rem;
+}
+
+.row-input.-horizontal:last-child {
+  margin-right: -0.5rem;
+}
+
 .row:hover .row-move,
 .row:hover .row-delete {
   opacity: 1;

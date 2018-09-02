@@ -80,6 +80,17 @@
                 margin-bottom: 0;
             }
         }
+        &.-horizontal{
+            padding: 0 0.5rem;
+
+            &:first-child{
+                margin-left: -0.5rem;
+            }
+
+            &:last-child{
+                margin-right: -0.5rem;
+            }
+        }
     }
 
     &:hover{

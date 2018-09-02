@@ -12862,8 +12862,12 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sub_fields_TextSubField_vue__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sub_fields_TextSubField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__sub_fields_TextSubField_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sub_fields_NumberSubField_vue__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sub_fields_NumberSubField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__sub_fields_NumberSubField_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sub_fields_EmailSubField_vue__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sub_fields_EmailSubField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__sub_fields_EmailSubField_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sub_fields_NumberSubField_vue__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sub_fields_NumberSubField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__sub_fields_NumberSubField_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sub_fields_SelectSubField_vue__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sub_fields_SelectSubField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__sub_fields_SelectSubField_vue__);
 //
 //
 //
@@ -12895,6 +12899,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 
 
@@ -12903,7 +12909,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     components: {
         TextSubField: __WEBPACK_IMPORTED_MODULE_0__sub_fields_TextSubField_vue___default.a,
-        NumberSubField: __WEBPACK_IMPORTED_MODULE_1__sub_fields_NumberSubField_vue___default.a
+        EmailSubField: __WEBPACK_IMPORTED_MODULE_1__sub_fields_EmailSubField_vue___default.a,
+        NumberSubField: __WEBPACK_IMPORTED_MODULE_2__sub_fields_NumberSubField_vue___default.a,
+        SelectSubField: __WEBPACK_IMPORTED_MODULE_3__sub_fields_SelectSubField_vue___default.a
     },
 
     props: ['value', 'field', 'index'],
@@ -12917,6 +12925,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         deleteRow: function deleteRow() {
             this.$emit('delete-row', this.index);
+        },
+        getInputLayout: function getInputLayout(subField) {
+            return this.field.display_stacked ? this.formLayout : this.formLayout + ' ' + subField.width;
         }
     }
 
@@ -13221,7 +13232,7 @@ var render = function() {
           key: index,
           tag: "component",
           staticClass: "row-input",
-          class: _vm.formLayout,
+          class: _vm.getInputLayout(subField),
           attrs: { "sub-field": subField },
           model: {
             value: _vm.value[subField.name],
@@ -13327,6 +13338,257 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(31)
+/* template */
+var __vue_template__ = __webpack_require__(32)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/sub-fields/SelectSubField.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6b3e5a38", Component.options)
+  } else {
+    hotAPI.reload("data-v-6b3e5a38", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['subField', 'value']
+
+});
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "select",
+      {
+        staticClass: "w-full form-control form-select w/",
+        attrs: { id: _vm.subField.name, name: _vm.subField.name },
+        domProps: { value: _vm.value },
+        on: {
+          change: function($event) {
+            _vm.$emit("input", $event.target.value)
+          }
+        }
+      },
+      [
+        _c("option", { attrs: { value: "", selected: "", disabled: "" } }, [
+          _vm._v(
+            "\n            " + _vm._s(_vm.__("Choose an option")) + "\n        "
+          )
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.subField.options, function(label, name) {
+          return _c("option", {
+            domProps: {
+              value: name,
+              selected: name == _vm.value,
+              textContent: _vm._s(label)
+            }
+          })
+        })
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6b3e5a38", module.exports)
+  }
+}
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(34)
+/* template */
+var __vue_template__ = __webpack_require__(35)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/sub-fields/EmailSubField.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b9ce70d0", Component.options)
+  } else {
+    hotAPI.reload("data-v-b9ce70d0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 34 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['subField', 'value']
+
+});
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("input", {
+      staticClass: "w-full form-control form-input form-input-bordered",
+      attrs: {
+        id: _vm.subField.name,
+        name: _vm.subField.name,
+        type: "email",
+        placeholder: _vm.subField.placeholder
+      },
+      domProps: { value: _vm.value },
+      on: {
+        input: function($event) {
+          _vm.$emit("input", $event.target.value)
+        }
+      }
+    })
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-b9ce70d0", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
