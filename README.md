@@ -173,11 +173,11 @@ Repeater::make('Dogs')
 
 The detail and index views show a summary of the data inputted using the repeater field.  By default this will show the count of the rows e.g. '3 rows' along with a link to expand to show the full data that was inputted:
 
-![Nova repeatable field set on Nova index view - collapsed state](https://raw.githubusercontent.com/fourstacks/nova-repeatable-fields/master/screenshot-index-collapsed)
+![Nova repeatable field set on Nova index view - collapsed state](https://raw.githubusercontent.com/fourstacks/nova-repeatable-fields/master/screenshot-index-collapsed.png)
   
  You can overrides this summary text to something more specific  e.g. '3 dogs':
  
- ![Nova repeatable field set on Nova index view - expanded state](https://raw.githubusercontent.com/fourstacks/nova-repeatable-fields/master/screenshot-index-expanded)
+ ![Nova repeatable field set on Nova index view - expanded state](https://raw.githubusercontent.com/fourstacks/nova-repeatable-fields/master/screenshot-index-expanded.png)
 
 
 #### displayStackedForm
@@ -189,7 +189,7 @@ Repeater::make('Dogs')
 
 By default, a set of sub fields will appear as a series of  horizontally aligned input fields:  
 
- ![Nova repeatable field set on Nova form view - default horizontal fields](https://raw.githubusercontent.com/fourstacks/nova-repeatable-fields/master/screenshot-horizontal-form)
+ ![Nova repeatable field set on Nova form view - default horizontal fields](https://raw.githubusercontent.com/fourstacks/nova-repeatable-fields/master/screenshot-horizontal-form.png)
 
 This works well for repeater fields with only 2 or 3 sub fields, however for larger field sets a stacked form that displays repeater sub fields above one another will generally be a more usable layout.  You can switch to a stacked layout using this option.
 
