@@ -59,10 +59,15 @@
                 this.$emit('delete-row', this.index);
             },
             getInputLayout(subField){
+
+                let width = (subField.width)
+                    ? subField.width
+                    : 'flex-1';
+
                 return (this.field.display_stacked)
                     ? this.formLayout
-                    : `${this.formLayout} ${subField.width}`
-            }
+                    : `${this.formLayout} ${width}`
+            },
         }
 
     }
