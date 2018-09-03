@@ -3,7 +3,7 @@
         <select
             :id="subField.name"
             :name="subField.name"
-            class="w-full form-control form-select w/"
+            class="w-full form-control form-select"
             :value="value"
             @change="$emit('input', $event.target.value)">
             <option
