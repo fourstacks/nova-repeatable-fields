@@ -33,9 +33,13 @@ export default{
                 let keys = Object.keys(row);
 
                 return keys.map(key => {
+                    let subField = this.field.sub_fields.find(field => field.name === key);
+                    let value = (['select'].some(type => type === subField.type))
+                        ? subField.options[row[key]]
+                        : row[key];
                     return {
-                        label: this.field.sub_fields.find(field => field.name === key).label,
-                        value: row[key]
+                        label: subField.label,
+                        value: value
                     }
                 });
             })
