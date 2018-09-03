@@ -5,8 +5,9 @@
             <ul v-show="detailVisible" class="list-reset">
                 <li v-for="row in rows">
                     <ul class="list-reset mb-4">
-                        <li v-for="subRow in row">
-                            {{ subRow.label }}: {{ subRow.value }}
+                        <li class="flex items-top mb-1" v-for="subRow in row">
+                            <span class="block w-1/6 mr-2">{{ subRow.label }}:</span>
+                            <span class="block"><strong>{{ subRow.value }}</strong></span>
                         </li>
                     </ul>
                 </li>
