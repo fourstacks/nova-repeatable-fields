@@ -1,10 +1,10 @@
 # A repeatable field for Nova apps
 
-This package contains a Laravel Nova field that enables the creation of repeatable sets of fields.  Nova users are free to create, reorder and delete multiple rows of data with the fields you define.  Data is saved to the database as JSON.
+This package contains a Laravel Nova field that enables the creation of repeatable sets of 'sub' fields.  Nova users are free to create, reorder and delete multiple rows of data with the sub fields you define.  Data is saved to the database as JSON.
 
-## Examples
+## Example
 
-![Nova repeatble field set on Nova form view](https://raw.githubusercontent.com/fourstacks/nova-repeatable-fields/master/repeatable-fields.gif)
+![Nova repeatable field set on Nova form view](https://raw.githubusercontent.com/fourstacks/nova-repeatable-fields/master/repeatable-fields.gif)
 
 
 ## Installation
@@ -63,14 +63,14 @@ The underlying database field should be either a `string` or `text` type field.
 
 ## Configuration
 
-This package comes with various options that you can use to define the sub-fields within your repeater and 
+This package comes with various options that you can use to define the sub fields within your repeater and 
 
 
 #### addField
 
 Parameters: `array`
 
-Every repeater field you create should contain at least one field added via `addField`.  The `addField` method accepts an array of field configuration options:
+Every repeater field you create should contain at least one sub field added via `addField`.  The `addField` method accepts an array of sub field configuration options:
 
 ```php
 
@@ -92,7 +92,7 @@ Configuration options are:
 ]
 ```
 
-All fields must, at a minimum, be defined with a 'label'.  This is a human-readable string that will appear in the Nova UI.
+All sub fields must, at a minimum, be defined with a 'label'.  This is a human-readable string that will appear in the Nova UI.
 
 ##### name
 
@@ -103,7 +103,7 @@ All fields must, at a minimum, be defined with a 'label'.  This is a human-reada
 ]
 ```
 
-By default, the name of the field (used when saving the data in the database) will be generated automatically using a snake case version of the field `label`.  Alternatively you are free to override this convention and define a custom name to be used.
+By default, the `name` of the sub field (used when saving the data in the database) will be generated automatically using a snake case version of the sub field `label`.  Alternatively you are free to override this convention and define a custom name to be used.
 
 ##### type
 
@@ -114,7 +114,7 @@ By default, the name of the field (used when saving the data in the database) wi
 ]
 ```
 
-By default, the input type of the field will be a standard text field.  You are free to define a different field type if you wish.  Currently supported field types are: 'text', 'number', 'select'.
+By default, the input type of the sub field will be a standard text field.  You are free to define a different field type if you wish.  Currently supported sub field types are: 'text', 'number', 'select'.
 
 ##### placeholder
 
@@ -125,7 +125,7 @@ By default, the input type of the field will be a standard text field.  You are 
 ]
 ```
 
-By default, the input placeholder will be the same as the field `label`.  However you are free to define a custom placeholder using this option that will appear instead.
+By default, the input `placeholder` will be the same as the sub field `label`.  However you are free to define a custom placeholder using this option that will appear instead.
 
 ```php
 [ 
@@ -134,9 +134,9 @@ By default, the input placeholder will be the same as the field `label`.  Howeve
 ]
 ```
 
-If you choose to display your fields in a row (rather than stacked - see the `displayStackedForm` option below) you can define the widths of your fields using [Tailwind's fractional width classes](https://tailwindcss.com/docs/width/#app). You do not need to define widths for all your fields unless you want to.  
+If you choose to display your sub fields in a row (rather than stacked - see the `displayStackedForm` option below) you can define the widths of your fields using [Tailwind's fractional width classes](https://tailwindcss.com/docs/width/#app). You do not need to define widths for all your fields unless you want to. If no widths are entered for any sub fields all sub fields will be the same width.
 
-Furthermore if you are displaying your form as a stacked form then width options will have no effect.
+If you are displaying your sub fields in a stacked layout then width options will have no effect.
 
 ##### options
 
@@ -151,7 +151,7 @@ Furthermore if you are displaying your form as a stacked form then width options
 ]
 ```
 
-If the `type` of the field you are defining is 'select', you will need to define an array of options for the select field.  These are defined using an array of key/value pairs.
+If the `type` of the sub field you are defining is 'select', you will need to define an array of options for the select field.  These are defined using an array of key/value pairs.
 
 
 #### addButtonText
@@ -161,17 +161,23 @@ Repeater::make('Dogs')
     ->addButtonText('Add new dog');
 ```
 
-You are free to configure the text for the button used to add a new repeater row in the Nova UI.  By default this button is labelled 'Add row' but you can override this using the `addButtonText` option.
+You are free to configure the text for the button used to add a new set of sub fields in the Nova UI.  By default this button is labelled 'Add row' but you can override this using the `addButtonText` option.
 
 
-#### addButtonText
+#### summaryLabel
 
 ```php
 Repeater::make('Dogs')
     ->summaryLabel('Dogs');
 ```
 
-The detail and index views show a summary of the data added using the repeater field.  By default this will show the count of the rows e.g. '3 rows' along with a link to expand to show the full data that was inputted.  You can overrides this summary text to something more specific  e.g. '3 Dogs'.
+The detail and index views show a summary of the data inputted using the repeater field.  By default this will show the count of the rows e.g. '3 rows' along with a link to expand to show the full data that was inputted:
+
+![Nova repeatable field set on Nova index view - collapsed state](https://raw.githubusercontent.com/fourstacks/nova-repeatable-fields/master/screenshot-index-collapsed)
+  
+ You can overrides this summary text to something more specific  e.g. '3 dogs':
+ 
+ ![Nova repeatable field set on Nova index view - expanded state](https://raw.githubusercontent.com/fourstacks/nova-repeatable-fields/master/screenshot-index-expanded)
 
 
 #### displayStackedForm
@@ -181,7 +187,11 @@ Repeater::make('Dogs')
     ->displayStackedForm();
 ```
 
-By default, a repeater 'row' will appear as a series of  horizontally aligned fields.  This works well for repeater fields with only 2 or 3 subfields, however for larger field sets a stacked form that displays repeater subfields above one another will generally be a more usable layout.  You can switch to a stacked layout using this option.
+By default, a set of sub fields will appear as a series of  horizontally aligned input fields:  
+
+ ![Nova repeatable field set on Nova form view - default horizontal fields](https://raw.githubusercontent.com/fourstacks/nova-repeatable-fields/master/screenshot-horizontal-form)
+
+This works well for repeater fields with only 2 or 3 sub fields, however for larger field sets a stacked form that displays repeater sub fields above one another will generally be a more usable layout.  You can switch to a stacked layout using this option.
 
 ### Changelog
 
