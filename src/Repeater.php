@@ -50,6 +50,20 @@ class Repeater extends Field
         ]);
     }
 
+    public function initialRows($count)
+    {
+        return $this->withMeta([
+            'initial_rows' => $count
+        ]);
+    }
+
+    public function maximumRows($count)
+    {
+        return $this->withMeta([
+            'maximum_rows' => $count
+        ]);
+    }
+
     protected function fillAttributeFromRequest(NovaRequest $request,
                                                 $requestAttribute,
                                                 $model,
