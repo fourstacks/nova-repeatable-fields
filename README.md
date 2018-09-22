@@ -193,6 +193,29 @@ By default, a set of sub fields will appear as a series of  horizontally aligned
 
 This works well for repeater fields with only 2 or 3 sub fields, however for larger field sets a stacked form that displays repeater sub fields above one another will generally be a more usable layout.  You can switch to a stacked layout using this option.
 
+
+#### initialRows
+
+```php
+Repeater::make('Dogs')
+    ->initialRows(4);
+```
+
+
+Sets the initial number of rows that will be pre-added on form initialization. For forms with existing rows, it will append up to the set number of rows.
+
+
+#### maximumRows
+
+```php
+Repeater::make('Dogs')
+    ->maximumRows(4);
+```
+
+
+Sets the maximum number of rows as the upper limit. Upon reaching this limit, you will not be able to add new rows.
+
+
 ### Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.

@@ -18,6 +18,7 @@
                 class="btn btn-default btn-primary"
                 @click.prevent="addNewRow"
                 v-text="addButtonText"
+                :class="{ 'cursor-not-allowed opacity-50': hasReachedMaximumRows }"
             ></button>
 
             <p v-if="hasError" class="my-2 text-danger">
@@ -53,6 +54,14 @@
                 return (this.field.add_button_text)
                     ? this.field.add_button_text
                     : 'Add row'
+            },
+
+            hasReachedMaximumRows(){
+                if (this.field.maximum_rows == undefined) {
+                    return false;
+                }
+
+                return this.rows.length >= this.field.maximum_rows;
             }
         },
 
@@ -64,6 +73,13 @@
                     this.rows = (this.value)
                         ? JSON.parse(this.value)
                         : [];
+
+                    if ((this.field.initial_rows) && (this.field.initial_rows > this.rows.length)) {
+                        var count = this.field.initial_rows - this.rows.length;
+                        for (var i = 0; i <= count; i++) {
+                            this.addNewRow();
+                        }
+                    }
                 });
             },
 
@@ -72,11 +88,13 @@
             },
 
             addNewRow() {
-                let newRow = this.field.sub_fields
-                    .map(subField => subField.name)
-                    .reduce((o, key) => ({...o, [key]: null}), {});
+                if (!this.hasReachedMaximumRows) {
+                    let newRow = this.field.sub_fields
+                        .map(subField => subField.name)
+                        .reduce((o, key) => ({...o, [key]: null}), {});
 
-                this.rows.push(newRow);
+                    this.rows.push(newRow);
+                }
             },
 
             deleteRow(index){
