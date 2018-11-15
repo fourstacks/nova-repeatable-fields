@@ -5,6 +5,7 @@
             :name="subField.name"
             class="w-full form-control form-select"
             :value="value"
+            v-bind="subField.attributes"
             @change="$emit('input', $event.target.value)">
             <option
                 value=""

@@ -64,11 +64,12 @@ class Repeater extends Field
         ]);
     }
 
-    protected function fillAttributeFromRequest(NovaRequest $request,
+    protected function fillAttributeFromRequest(
+        NovaRequest $request,
                                                 $requestAttribute,
                                                 $model,
-                                                $attribute)
-    {
+                                                $attribute
+    ) {
         if ($request->exists($requestAttribute)) {
             $model->{$attribute} = json_decode($request[$requestAttribute]);
         }
@@ -83,22 +84,22 @@ class Repeater extends Field
 
     private function normaliseFieldConfig($fieldConfig)
     {
-        $allowedKeys = ['label', 'name', 'placeholder', 'type', 'width', 'options'];
+        $allowedKeys = ['label', 'name', 'attributes', 'placeholder', 'type', 'width', 'options'];
         $config = array_intersect_key($fieldConfig, array_flip($allowedKeys));
 
-        if(! isset($config['name'])){
+        if (! isset($config['name'])) {
             $config['name'] = str_slug($config['label'], '_');
         }
-        if(! isset($config['placeholder'])){
+        if (! isset($config['placeholder'])) {
             $config['placeholder'] = $config['label'];
         }
-        if(! isset($config['type'])){
+        if (! isset($config['type'])) {
             $config['type'] = 'text';
         }
-        if(! isset($config['width'])){
+        if (! isset($config['width'])) {
             $config['width'] = null;
         }
-        if(! isset($config['options'])){
+        if (! isset($config['options'])) {
             $config['options'] = [];
         }
 
