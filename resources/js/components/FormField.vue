@@ -80,7 +80,7 @@
 
 					if (this.shouldAddInitialRows) {
 						let count = this.field.initial_rows - this.rows.length;
-						for (let i = 0; i <= count; i++) {
+						for (let i = 1; i <= count; i++) {
 							this.addNewRow();
 						}
 					}
