@@ -34,6 +34,7 @@
     import EmailSubField from '../sub-fields/EmailSubField.vue';
     import NumberSubField from '../sub-fields/NumberSubField.vue';
     import SelectSubField from '../sub-fields/SelectSubField.vue';
+    import TextareaSubField from '../sub-fields/TextareaSubField.vue';
 
     export default {
 
@@ -41,7 +42,8 @@
             TextSubField,
             EmailSubField,
             NumberSubField,
-            SelectSubField
+            SelectSubField,
+            TextareaSubField,
         },
 
         props: ['value', 'field', 'index'],
