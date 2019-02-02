@@ -127,6 +127,8 @@ By default, the input type of the sub field will be a standard text field.  You 
 
 By default, the input `placeholder` will be the same as the sub field `label`.  However you are free to define a custom placeholder using this option that will appear instead.
 
+#### width
+
 ```php
 [ 
     'width' => 'w-1/2',
@@ -135,6 +137,8 @@ By default, the input `placeholder` will be the same as the sub field `label`.  
 ```
 
 If you choose to display your sub fields in a row (rather than stacked - see the `displayStackedForm` option below) you can define the widths of your fields using [Tailwind's fractional width classes](https://tailwindcss.com/docs/width/#app). You do not need to define widths for all your fields unless you want to. If no widths are entered for any sub fields all sub fields will be the same width.
+
+Note that you are free to mix and match widths.  For example you may with to set your first two fields to 50% width using `w-1/2` then set the final field to be full width via `w-full`.
 
 If you are displaying your sub fields in a stacked layout then width options will have no effect.
 
@@ -153,6 +157,20 @@ If you are displaying your sub fields in a stacked layout then width options wil
 
 If the `type` of the sub field you are defining is 'select', you will need to define an array of options for the select field.  These are defined using an array of key/value pairs.
 
+##### attributes
+
+```php
+[ 
+    'attributes' => [
+        'min' => 1,
+        'max' => '20',
+        'style' => 'color: red'
+    ]',
+    //...
+]
+```
+
+Via the `attributes` key you are free to define any custom properties you wish to add to the input via an associative array.  These will be added via `v-bind`.  For example you may wish to add min or max steps to a number field or a style attribute to a text field.
 
 #### addButtonText
 
