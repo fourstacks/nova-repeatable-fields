@@ -66,9 +66,10 @@
                     ? subField.width
                     : 'flex-1';
 
-                return (this.field.display_stacked)
-                    ? this.formLayout
-                    : `${this.formLayout} ${width}`
+                if(this.field.display_stacked){
+                	return this.formLayout;
+                }
+                return `${this.formLayout} ${width} mb-2`
             },
         }
 
