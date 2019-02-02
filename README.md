@@ -114,7 +114,7 @@ By default, the `name` of the sub field (used when saving the data in the databa
 ]
 ```
 
-By default, the input type of the sub field will be a standard text field.  You are free to define a different field type if you wish.  Currently supported sub field types are: 'text', 'number', 'select'.
+By default, the input type of the sub field will be a standard text field.  You are free to define a different field type if you wish.  Currently supported sub field types are: 'text', 'number', 'select', 'textarea'.
 
 ##### placeholder
 
