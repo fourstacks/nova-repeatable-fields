@@ -76,7 +76,7 @@ class Repeater extends Field
 
     public function resolveAttribute($resource, $attribute = null)
     {
-        $value = data_get($resource, $attribute);
+        $value = parent::resolveAttribute($resource, $attribute);
 
         return json_encode($value ?? []);
     }
