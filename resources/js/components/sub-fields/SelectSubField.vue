@@ -35,7 +35,7 @@
         computed:{
             placeholder(){
                 return (this.subField.placeholder === this.subField.label)
-                    ? 'Choose an option'
+                    ? this.__('Choose an option')
                     : this.subField.placeholder
             }
         }

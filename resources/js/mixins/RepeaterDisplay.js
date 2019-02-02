@@ -12,8 +12,8 @@ export default{
         },
         toggleText() {
             return (this.detailVisible)
-                ? 'Hide detail'
-                : 'Show detail'
+                ? this.__('Hide detail')
+                : this.__('Show detail')
         },
         summaryText() {
             return `${this.summaryTextNumber} ${this.summaryTextLabel}`;
