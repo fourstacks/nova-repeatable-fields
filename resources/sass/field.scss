@@ -64,6 +64,8 @@
 
         &.-horizontal{
             justify-content: space-between;
+            margin-left: -0.5rem;
+            margin-right: -0.5rem;
         }
 
         &.-vertical{
@@ -82,14 +84,6 @@
         }
         &.-horizontal{
             padding: 0 0.5rem;
-
-            &:first-child{
-                margin-left: -0.5rem;
-            }
-
-            &:last-child{
-                margin-right: -0.5rem;
-            }
         }
     }
 
