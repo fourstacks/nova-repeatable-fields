@@ -1,5 +1,5 @@
 {
-    "name": "fourstacks/nova-repeatable-fields",
+    "name": "nassu/nova-repeatable-fields",
     "description": "A Laravel Nova field.",
     "keywords": [
         "laravel",
@@ -11,13 +11,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Fourstacks\\NovaRepeatableFields\\": "src/"
+            "Nassu\\NovaRepeatableFields\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Fourstacks\\NovaRepeatableFields\\FieldServiceProvider"
+                "Nassu\\NovaRepeatableFields\\FieldServiceProvider"
             ]
         }
     },
