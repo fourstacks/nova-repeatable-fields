@@ -77,7 +77,7 @@ class Repeater extends Field
                                                 $attribute)
     {
         if ($request->exists($requestAttribute)) {
-            $model->{$attribute} = json_decode($request[$requestAttribute]);
+            $model->{$attribute} = $request[$requestAttribute];
         }
     }
 
