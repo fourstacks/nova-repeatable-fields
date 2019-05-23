@@ -16,7 +16,7 @@
             </svg>
         </button>
         <div class="row-inputs flex-wrap" :class="formLayout">
-            <h3 v-if="field.heading" class="mb-2">
+            <h3 v-if="field.heading && field.display_stacked" class="mb-2">
                 {{ field.heading + " #" + (index + 1) }}
             </h3>
             <component
