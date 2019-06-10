@@ -234,6 +234,17 @@ Repeater::make('Dogs')
 Sets the maximum number of rows as the upper limit. Upon reaching this limit, you will not be able to add new rows.
 
 
+#### heading
+
+```php
+Repeater::make('Dogs')
+    ->heading('Dog');
+```
+
+
+Sets the heading between each row (eg. Dog #1, Dog #2). Only works when used with "displayStackedForm".
+
+
 ### Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
