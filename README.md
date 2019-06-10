@@ -150,7 +150,7 @@ If you are displaying your sub fields in a stacked layout then width options wil
         'fido' => 'Fido',
         'mr_bubbles' => 'Mr Bubbles',
         'preston' => 'Preston'
-    ]',
+    ],
     //...
 ]
 ```
@@ -165,7 +165,7 @@ If the `type` of the sub field you are defining is 'select', you will need to de
         'min' => 1,
         'max' => '20',
         'style' => 'color: red'
-    ]',
+    ],
     //...
 ]
 ```
