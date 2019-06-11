@@ -20,13 +20,15 @@
                 {{ field.heading + " #" + (index + 1) }}
             </h3>
             <component
-                v-for="(subField, index) in field.sub_fields"
+                v-for="(subField, fieldIndex) in field.sub_fields"
                 :is="`${subField.type}-sub-field`"
-                :key="index"
+                :key="fieldIndex"
                 :sub-field="subField"
                 v-model="value[subField.name]"
                 class="row-input"
                 :class="getInputLayout(subField)"
+                :errors="errors"
+                :attribute="field.attribute + '.' + index + '.' + subField.name"
             ></component>
         </div>
     </div>
@@ -49,7 +51,7 @@
             TextareaSubField,
         },
 
-        props: ['value', 'field', 'index'],
+        props: ['value', 'field', 'index', 'errors'],
 
         computed:{
             formLayout(){

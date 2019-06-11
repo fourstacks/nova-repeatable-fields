@@ -11,6 +11,7 @@
                         :index="index"
                         :field="field"
                         @delete-row="deleteRow"
+                        :errors="childErrors"
                 ></sub-field-row>
             </draggable>
 
@@ -21,10 +22,6 @@
                     v-text="addButtonText"
                     :class="{ 'cursor-not-allowed opacity-50': hasReachedMaximumRows }"
             ></button>
-
-            <p v-if="hasError" class="my-2 text-danger">
-                {{ firstError }}
-            </p>
         </template>
     </default-field>
 </template>
@@ -33,6 +30,7 @@
 	import draggable from 'vuedraggable'
 	import {FormField, HandlesValidationErrors} from 'laravel-nova'
 	import SubFieldRow from './rows/SubFieldRow.vue';
+    import { Errors } from 'form-backend-validation'
 
 	export default {
 
@@ -51,6 +49,14 @@
 		props: ['resourceName', 'resourceId', 'field'],
 
 		computed: {
+		    childErrors() {
+		        if (this.hasError) {
+		            return new Errors(this.firstError);
+                }
+
+		        return new Errors();
+            },
+
 			addButtonText() {
 				return (this.field.add_button_text)
 					? this.field.add_button_text

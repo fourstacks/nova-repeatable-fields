@@ -111,4 +111,15 @@ class Repeater extends Field
 
         return $config;
     }
+
+    public function rules($rules)
+    {
+        if (!is_array($rules)) {
+            abort(500, 'Nova Items Field requires array of validation rules');
+        }
+
+        $this->rules = [ new ArrayRules($this, $rules) ];
+
+        return $this;
+    }
 }
