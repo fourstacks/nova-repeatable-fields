@@ -15,6 +15,7 @@
             </draggable>
 
             <button
+                    type="button"
                     class="btn btn-default btn-primary"
                     @click.prevent="addNewRow"
                     v-text="addButtonText"
