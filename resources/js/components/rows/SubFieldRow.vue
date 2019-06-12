@@ -17,6 +17,7 @@
         </button>
         <div class="row-inputs flex-wrap" :class="formLayout">
             <component
+                v-if="subField.type"
                 v-for="(subField, index) in field.sub_fields"
                 :is="`${subField.type}-sub-field`"
                 :key="index"
@@ -25,6 +26,23 @@
                 class="row-input"
                 :class="getInputLayout(subField)"
             ></component>
+
+            <template
+                v-if="!subField.type"
+                v-for="(subField, i) in field.sub_fields">
+                    <component
+                        :is="'form-' + subField.component"
+                        :key="i"
+                        :name="'f-' + subField.attribute"
+                        :field="subField"
+                        :resource-id="resourceId"
+                        :resource-name="resourceName"
+                        v-model="value[subField.attribute]"
+                        class="row-input"
+                        :class="getInputLayout(subField)"
+                    ></component>
+            </template>
+
         </div>
     </div>
 </template>
@@ -46,7 +64,25 @@
             TextareaSubField,
         },
 
-        props: ['value', 'field', 'index'],
+        props: ['value', 'field', 'index', 'resourceName', 'resourceId'],
+
+        mounted(){
+            var _this = this;
+
+            this.$children.filter(component => {
+                if(component.field){
+                    component.value = _this.value[component.field.attribute]
+                }
+
+                component.$watch(
+                    value => {
+                        if(component.field){
+                            _this.value[component.field.attribute] = component.value
+                        }
+                    }
+                );
+            });
+        },
 
         computed:{
             formLayout(){
