@@ -150,7 +150,7 @@ If you are displaying your sub fields in a stacked layout then width options wil
         'fido' => 'Fido',
         'mr_bubbles' => 'Mr Bubbles',
         'preston' => 'Preston'
-    ]',
+    ],
     //...
 ]
 ```
@@ -165,7 +165,7 @@ If the `type` of the sub field you are defining is 'select', you will need to de
         'min' => 1,
         'max' => '20',
         'style' => 'color: red'
-    ]',
+    ],
     //...
 ]
 ```
@@ -232,6 +232,17 @@ Repeater::make('Dogs')
 
 
 Sets the maximum number of rows as the upper limit. Upon reaching this limit, you will not be able to add new rows.
+
+
+#### heading
+
+```php
+Repeater::make('Dogs')
+    ->heading('Dog');
+```
+
+
+Sets the heading between each row (eg. Dog #1, Dog #2). Only works when used with "displayStackedForm".
 
 
 ### Changelog

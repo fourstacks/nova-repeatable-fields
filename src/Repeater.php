@@ -64,6 +64,13 @@ class Repeater extends Field
         ]);
     }
 
+    public function heading($heading)
+    {
+        return $this->withMeta([
+            "heading" => $heading
+        ]);
+    }
+
     protected function fillAttributeFromRequest(NovaRequest $request,
                                                 $requestAttribute,
                                                 $model,
