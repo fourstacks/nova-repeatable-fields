@@ -315,7 +315,7 @@ class MigrateRepeaterData extends Command
         $attribute = $this->ask('Which model attribute holds the data you want to migrate?');
 
         if(! Schema::hasColumn((new $model)->getTable(), $attribute) ){
-            $this->error("Sorry - could not find a database column called model called {$attribute} for {$model}");
+            $this->error("Sorry - could not find a database column  called {$attribute} for {$model}");
             return;
         }
 
