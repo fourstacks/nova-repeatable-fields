@@ -265,7 +265,7 @@ Please note that the following solution is a guide only.  It is up to you to imp
 
 I accept no responsibility for changes made to existing data as a result of you using the code below.  Got it?  OK, on with the show...
 
-This guide assumes that you have already []installed the Nova Flexible Content package](https://whitecube.github.io/nova-flexible-content/#/?id=install) and you have [set up a layout that for the data](https://whitecube.github.io/nova-flexible-content/#/?id=adding-layouts) that you wish to migrate.
+This guide assumes that you have already [installed the Nova Flexible Content package](https://whitecube.github.io/nova-flexible-content/#/?id=install) and you have [set up a layout that for the data](https://whitecube.github.io/nova-flexible-content/#/?id=adding-layouts) that you wish to migrate.
 
 Next, in your application, create a new artisan command:  `php artisan make:command MigrateRepeaterData`
 
