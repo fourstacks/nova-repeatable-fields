@@ -1,5 +1,17 @@
 # A repeatable field for Nova apps
 
+---
+
+**NOTE**
+
+It is strongly recommended that you use the Nova Flexible Content package rather than this one: https://github.com/whitecube/nova-flexible-content.
+
+The Nova Flexible Content package is actively maintained and allows you to use any valid Nova field as a sub field.  Due to other commitment, this package is only sporadically maintained and is unlikely to have new features added so new users should strongly consider Nova Flexible Content instead of this package.
+
+Existing users of this package who would like to move to Nova Flexible Content will need to do a little bit of work to migrate your data across.  Please see the appendix below offering a potential solution for migrating your data.
+
+---
+
 This package contains a Laravel Nova field that enables the creation of repeatable sets of 'sub' fields.  Nova users are free to create, reorder and delete multiple rows of data with the sub fields you define.  Data is saved to the database as JSON.
 
 ## Example
@@ -245,10 +257,126 @@ Repeater::make('Dogs')
 Sets the heading between each row (eg. Dog #1, Dog #2). Only works when used with "displayStackedForm".
 
 
+## Appendix - Migrating data to Nova Flexible Content 
+
+This guide is only intended for existing users of this package that wish to use the Nova Flexible Content package instead and want an idea of how to migrate data.
+
+Please note that the following solution is a guide only.  It is up to you to implement and test and solution for your data and you are strongly recommended to backup any data before running any code that mutates multiple database rows. 
+
+I accept no responsibility for changes made to existing data as a result of you using the code below.  Got it?  OK, on with the show...
+
+This guide assumes that you have already []installed the Nova Flexible Content package](https://whitecube.github.io/nova-flexible-content/#/?id=install) and you have [set up a layout that for the data](https://whitecube.github.io/nova-flexible-content/#/?id=adding-layouts) that you wish to migrate.
+
+Next, in your application, create a new artisan command:  `php artisan make:command MigrateRepeaterData`
+
+Add the following code so that your command looks something like this:
+
+```php
+<?php
+
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Schema;
+
+class MigrateRepeaterData extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'nfc:migrate';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Migrate your repeater data to be compatible with Nova Flexible Content';
+
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+    	// Get the model to run this command for
+		$model = $this->ask('Which model do you want to migrate data for?  Enter the full namespace e.g. App\Post');
+
+		if(! class_exists($model)){
+			$this->error("Sorry - could not find a model called {$model}");
+			return;
+		}
+
+		// Get the attribute on the model that holds the old repeater data
+		$attribute = $this->ask('Which model attribute holds the data you want to migrate?');
+
+		if(! Schema::hasColumn((new $model)->getTable(), $attribute) ){
+			$this->error("Sorry - could not find a database column called model called {$attribute} for {$model}");
+			return;
+		}
+
+		// Get the Nova Flexible Content layout name
+		$layout = $this->ask('What is the name of the Nova Flexible Content layout for this data?');
+
+		$models = $model::all();
+
+		if ($this->confirm("About to migrate data for {$models->count()} models.  Do you wish to continue?")) {
+			$models->each(function($model) use ($attribute, $layout){
+				$model->$attribute = $this->updateValues($model->$attribute, $layout);
+				$model->save();
+			});
+
+			$this->info('All done!  Please check your data to ensure it was migrated correctly');
+		}
+    }
+
+	protected function updateValues($data, $layout)
+	{
+		// Skip anything that is not an array with elements and keep the value the same
+		if(! $data){
+			return $data;
+		}
+
+		return collect($data)
+			->map(function($attributes) use ($layout){
+				return [
+					// Create a random key
+					'key' => $this->generateKey(),
+					// my_nova_flexible_content_layout should match the name
+					// you gave to your Nova Flexible Content layout
+					'layout' => $layout,
+					// The data for a given repeater 'row'
+					'attributes' => $attributes
+				];
+			})
+			->all();
+    }
+
+	protected function generateKey()
+	{
+		if (function_exists("random_bytes")) {
+			$bytes = random_bytes(ceil(16/2));
+		}
+		elseif (function_exists("openssl_random_pseudo_bytes")) {
+			$bytes = openssl_random_pseudo_bytes(ceil(16/2));
+		}
+		else {
+			throw new \Exception("No cryptographically secure random function available");
+		}
+		return substr(bin2hex($bytes), 0, 16);
+    }
+}
+
+```
+
+
 ### Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
 
 ## Credits
 
