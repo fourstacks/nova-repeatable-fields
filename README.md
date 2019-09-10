@@ -1,16 +1,18 @@
-# A repeatable field for Nova apps
-
 ---
 
 **NOTE**
 
-It is strongly recommended that you use the Nova Flexible Content package rather than this one: https://github.com/whitecube/nova-flexible-content.
+It is strongly recommended that you use the Nova Flexible Content package rather than this one: 
+
+[Nova Flexible Content](https://github.com/whitecube/nova-flexible-content)
 
 The Nova Flexible Content package is actively maintained and allows you to use any valid Nova field as a sub field.  Due to other commitment, this package is only sporadically maintained and is unlikely to have new features added so new users should strongly consider Nova Flexible Content instead of this package.
 
-Existing users of this package who would like to move to Nova Flexible Content will need to do a little bit of work to migrate your data across.  Please see the appendix below offering a potential solution for migrating your data.
+Existing users of this package who would like to move to Nova Flexible Content will need to do a little bit of work to migrate your data across.  [Please see the appendix below](#appendix-migrating-data-to-nova-flexible-content)  offering a potential solution for migrating your data.
 
 ---
+
+# A repeatable field for Nova apps
 
 This package contains a Laravel Nova field that enables the creation of repeatable sets of 'sub' fields.  Nova users are free to create, reorder and delete multiple rows of data with the sub fields you define.  Data is saved to the database as JSON.
 
@@ -261,11 +263,11 @@ Sets the heading between each row (eg. Dog #1, Dog #2). Only works when used wit
 
 This guide is only intended for existing users of this package that wish to use the Nova Flexible Content package instead and want an idea of how to migrate data.
 
-Please note that the following solution is a guide only.  It is up to you to implement and test and solution for your data and you are strongly recommended to backup any data before running any code that mutates multiple database rows. 
+Please note that the following solution is a guide only.  It is up to you to implement and test a solution for your data and you are strongly recommended to backup any data before running any code that mutates multiple database rows. 
 
 I accept no responsibility for changes made to existing data as a result of you using the code below.  Got it?  OK, on with the show...
 
-This guide assumes that you have already [installed the Nova Flexible Content package](https://whitecube.github.io/nova-flexible-content/#/?id=install) and you have [set up a layout that for the data](https://whitecube.github.io/nova-flexible-content/#/?id=adding-layouts) that you wish to migrate.
+This guide assumes that you have already [installed the Nova Flexible Content package](https://whitecube.github.io/nova-flexible-content/#/?id=install) and you have [set up a layout the for the data](https://whitecube.github.io/nova-flexible-content/#/?id=adding-layouts) that you wish to migrate.
 
 Next, in your application, create a new artisan command:  `php artisan make:command MigrateRepeaterData`
 
