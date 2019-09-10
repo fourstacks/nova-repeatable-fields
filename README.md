@@ -6,7 +6,7 @@ It is strongly recommended that you use the Nova Flexible Content package rather
 
 The Nova Flexible Content package is actively maintained and allows you to use any valid Nova field as a sub field.  Due to other commitment, this package is only sporadically maintained and is unlikely to have new features added so new users should strongly consider Nova Flexible Content instead of this package.
 
-Existing users of this package who would like to move to Nova Flexible Content will need to do a little bit of work to migrate your data across.  [Please see the appendix below](#appendix-migrating-data-to-nova-flexible-content)  offering a potential solution for migrating your data.
+Existing users of this package who would like to move to Nova Flexible Content will need to do a little bit of work to migrate your data across.  [Please see the appendix below](#appendix---migrating-data-to-nova-flexible-content)  offering a potential solution for migrating your data.
 
 ***
 
