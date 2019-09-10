@@ -1,5 +1,3 @@
----
-
 **NOTE**
 
 It is strongly recommended that you use the Nova Flexible Content package rather than this one: 
@@ -10,7 +8,7 @@ The Nova Flexible Content package is actively maintained and allows you to use a
 
 Existing users of this package who would like to move to Nova Flexible Content will need to do a little bit of work to migrate your data across.  [Please see the appendix below](#appendix-migrating-data-to-nova-flexible-content)  offering a potential solution for migrating your data.
 
----
+***
 
 # A repeatable field for Nova apps
 
