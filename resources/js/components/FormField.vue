@@ -10,6 +10,8 @@
                         :key="index"
                         :index="index"
                         :field="field"
+                        :resource-id="resourceId"
+                        :resource-name="resourceName"
                         @delete-row="deleteRow"
                 ></sub-field-row>
             </draggable>
@@ -94,7 +96,7 @@
 			addNewRow() {
 				if (! this.hasReachedMaximumRows) {
 					let newRow = this.field.sub_fields
-						.map(subField => subField.name)
+						.map(subField => subField.attribute)
 						.reduce((o, key) => ({...o, [key]: null}), {});
 
 					this.rows.push(newRow);

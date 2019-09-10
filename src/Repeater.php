@@ -29,6 +29,13 @@ class Repeater extends Field
         ]);
     }
 
+    public function addNovaFields($fieldsConfig)
+    {
+        return $this->withMeta([
+            'sub_fields' => $fieldsConfig,
+        ]);
+    }
+    
     public function addButtonText($text)
     {
         return $this->withMeta([
